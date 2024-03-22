@@ -50,7 +50,7 @@ def keyword20():
             texts[i] = re.sub(r"[^\uAC00-\uD7A30-9a-zA-Z\s]", "", s)
 
         keywordTop20 = TextRank(region, texts)
-        region_keywords_data = {'region': region, 'keywords': keywordTop20}
-        df_keywords = df_keywords.append(region_keywords_data, ignore_index=True)
+        region_keywords_data = pd.DataFrame({'region': region, 'keywords': keywordTop20})
+        df_keywords = pd.concat([df_keywords, region_keywords_data], ignore_index=True)
         
     return df_keywords
